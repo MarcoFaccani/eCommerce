@@ -1,6 +1,7 @@
 package com.example.demo.security;
 
 import com.auth0.jwt.JWT;
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,9 +18,9 @@ import java.util.ArrayList;
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
 @Component
-public class JWTAuthenticationVerficationFilter extends BasicAuthenticationFilter {
+public class JWTAuthenticationVerificationFilter extends BasicAuthenticationFilter {
 
-    public JWTAuthenticationVerficationFilter(AuthenticationManager authManager) {
+    public JWTAuthenticationVerificationFilter(AuthenticationManager authManager) {
         super(authManager);
     }
 
