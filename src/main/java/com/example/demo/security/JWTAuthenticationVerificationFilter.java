@@ -40,6 +40,7 @@ public class JWTAuthenticationVerificationFilter extends BasicAuthenticationFilt
         chain.doFilter(req, res);
     }
 
+
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest req) {
         String token = req.getHeader(SecurityConstants.HEADER_STRING);
         if (token != null) {

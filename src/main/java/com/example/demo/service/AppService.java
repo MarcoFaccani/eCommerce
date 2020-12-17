@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.exception.ItemNotFoundException;
 import com.example.demo.model.exception.UserNotFoundException;
+import com.example.demo.model.exception.UsernameNotAvailableException;
 import com.example.demo.model.persistence.Cart;
 import com.example.demo.model.persistence.Item;
 import com.example.demo.model.persistence.User;
@@ -10,12 +11,17 @@ import com.example.demo.model.persistence.repositories.CartRepository;
 import com.example.demo.model.persistence.repositories.ItemRepository;
 import com.example.demo.model.persistence.repositories.OrderRepository;
 import com.example.demo.model.persistence.repositories.UserRepository;
+import com.example.demo.model.requests.CreateUserRequest;
 import com.example.demo.model.requests.ModifyCartRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -34,6 +40,9 @@ public class AppService {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     public Cart addItemsToCart(ModifyCartRequest request) {
@@ -62,11 +71,18 @@ public class AppService {
         return orderRepository.findByUser(this.findUser(username));
     }
 
-    public User createUserAndCart(final String username) {
-        User user = new User();
-        user.setUsername(username);
+    public User createUserAndCart(final CreateUserRequest request) {
+        userRepository.findByUsername(request.getUsername())
+                .ifPresent(s -> { throw new UsernameNotAvailableException(); });
+
+        User user = User.builder()
+                .username(request.getUsername())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .build();
+
         Cart cart = new Cart();
         cartRepository.save(cart);
+
         user.setCart(cart);
         return userRepository.save(user);
     }

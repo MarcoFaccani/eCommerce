@@ -1,17 +1,23 @@
 package com.example.demo.model.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+@Data
 public class CreateUserRequest {
 
-	@JsonProperty
+	@NotBlank(message = "username is required")
 	private String username;
 
-	public String getUsername() {
-		return username;
-	}
+	@Size(min = 8, max = 64)
+	@NotBlank(message = "password is required")
+	private String password;
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+	@NotBlank(message = "confirmPassword is required")
+	@Size(min = 8, max = 64)
+	private String confirmPassword;
+
 }

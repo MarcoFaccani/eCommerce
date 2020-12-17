@@ -12,25 +12,30 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "user")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonProperty
 	private long id;
 	
 	@Column(nullable = false, unique = true)
-	@JsonProperty
 	private String username;
 
+	@JsonIgnore
 	private String password;
-	
+
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "cart_id", referencedColumnName = "id")
 	@JsonIgnore
