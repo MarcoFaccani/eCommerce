@@ -1,14 +1,10 @@
 package com.example.demo.controllers;
 
-import java.util.Optional;
-
-import com.example.demo.model.exception.PasswordLenghtExceeded;
+import com.example.demo.model.dto.UserDTO;
 import com.example.demo.model.exception.PasswordMismatchException;
-import com.example.demo.model.exception.PasswordTooShortException;
-import com.example.demo.model.exception.UsernameNotAvailableException;
 import com.example.demo.service.AppService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,14 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.model.persistence.Cart;
 import com.example.demo.model.persistence.User;
 import com.example.demo.model.persistence.repositories.CartRepository;
-import com.example.demo.model.persistence.repositories.UserRepository;
 import com.example.demo.model.requests.CreateUserRequest;
+import static org.springframework.beans.BeanUtils.copyProperties;
+
 
 import javax.validation.Valid;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -41,24 +38,24 @@ public class UserController {
 	}
 	
 	@GetMapping("/{username}")
-	public ResponseEntity<User> findByUserName(@PathVariable String username) {
+	public ResponseEntity<UserDTO> findByUserName(@PathVariable String username) {
 		User user = appService.findUser(username);
-		return user == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(user);
+		return user == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(convertToDTO(user));
 	}
 	
 	@PostMapping("/create")
-	public ResponseEntity<User> createUser(@Valid @RequestBody CreateUserRequest request) {
+	public ResponseEntity<UserDTO> createUser(@Valid @RequestBody CreateUserRequest request) {
+		log.info("New 	request user creation");
 		if (!request.getPassword().equals(request.getConfirmPassword())) throw new PasswordMismatchException();
 		User user = appService.createUserAndCart(request);
-		return ResponseEntity.ok(user);
+		log.info("New user created");
+		return ResponseEntity.ok(convertToDTO(user));
 	}
 
-
-	/*
-	TODO: delete exceptions in model
-	private void validatePassword(final String password) {
-		if (password.length() < 8) throw new PasswordTooShortException();
-		if (password.length() > 64) throw new PasswordLenghtExceeded();
-	}*/
+	private UserDTO convertToDTO(User user) {
+		UserDTO userDTO = new UserDTO();
+		copyProperties(user, userDTO);
+		return userDTO;
+	}
 
 }
