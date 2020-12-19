@@ -36,13 +36,17 @@ public class CartController {
 	
 	@PostMapping("/addToCart")
 	public ResponseEntity<CartDTO> addTocart(@RequestBody ModifyCartRequest request) {
+		log.info("[START] addTocart");
 		Cart cart = appService.addItemsToCart(request);
+		log.info("[END] addTocart");
 		return ResponseEntity.ok(convertToDTO(cart));
 	}
 	
 	@PostMapping("/removeFromCart")
 	public ResponseEntity<CartDTO> removeFromcart(@RequestBody ModifyCartRequest request) {
+		log.info("[START] removeFromcart");
 		Cart cart = appService.removeItemsFromCart(request);
+		log.info("[END] removeFromcart");
 		return ResponseEntity.ok(convertToDTO(cart));
 	}
 

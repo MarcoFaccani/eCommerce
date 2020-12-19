@@ -40,7 +40,10 @@ public class OrderController {
 	
 	@PostMapping("/submit/{username}")
 	public ResponseEntity<UserOrderDTO> submit(@PathVariable String username) {
+		log.info("[START] submit");
 		UserOrder order = appService.createOrder(username);
+		log.info("Order for {} created", username);
+		log.info("[END] submit");
 		return ResponseEntity.ok(convertToDTO(order));
 	}
 	

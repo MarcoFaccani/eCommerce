@@ -34,21 +34,26 @@ public class UserController {
 
 	@GetMapping("/id/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long id) {
+		log.info("findUserById: {}", id);
 		return ResponseEntity.ok(appService.findUserById(id));
 	}
 	
 	@GetMapping("/{username}")
 	public ResponseEntity<UserDTO> findByUserName(@PathVariable String username) {
+		log.info("[START] findUserByUserName: {}", username);
+		log.info("New request findByUserName: {}", username);
 		User user = appService.findUser(username);
+		log.info("[END] findByUserName");
+
 		return user == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(convertToDTO(user));
 	}
 	
 	@PostMapping("/create")
 	public ResponseEntity<UserDTO> createUser(@Valid @RequestBody CreateUserRequest request) {
-		log.info("New 	request user creation");
+		log.info("[START] createUser");
 		if (!request.getPassword().equals(request.getConfirmPassword())) throw new PasswordMismatchException();
 		User user = appService.createUserAndCart(request);
-		log.info("New user created");
+		log.info("[END] createUser");
 		return ResponseEntity.ok(convertToDTO(user));
 	}
 

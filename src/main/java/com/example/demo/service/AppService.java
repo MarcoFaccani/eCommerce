@@ -13,6 +13,7 @@ import com.example.demo.model.persistence.repositories.OrderRepository;
 import com.example.demo.model.persistence.repositories.UserRepository;
 import com.example.demo.model.requests.CreateUserRequest;
 import com.example.demo.model.requests.ModifyCartRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 @Service
+@Slf4j
 public class AppService {
 
     @Autowired
@@ -50,6 +52,7 @@ public class AppService {
         Item item = this.findItem(request.getItemId());
         Cart cart = user.getCart();
         IntStream.range(0, request.getQuantity()).forEach(i -> cart.addItem(item));
+        log.debug("{} items added to cart", request.getQuantity());
         return cartRepository.save(cart);
     }
 
@@ -58,6 +61,7 @@ public class AppService {
         Item item = this.findItem(request.getItemId());
         Cart cart = user.getCart();
         IntStream.range(0, request.getQuantity()).forEach(i -> cart.removeItem(item));
+        log.debug("{} items removed from cart", request.getQuantity());
         return cartRepository.save(cart);
     }
 
@@ -73,7 +77,10 @@ public class AppService {
 
     public User createUserAndCart(final CreateUserRequest request) {
         userRepository.findByUsername(request.getUsername())
-                .ifPresent(s -> { throw new UsernameNotAvailableException(); });
+                .ifPresent(s -> {
+                    log.error("[ERROR] username not available");
+                    throw new UsernameNotAvailableException();
+                });
 
         User user = User.builder()
                 .username(request.getUsername())
@@ -84,6 +91,7 @@ public class AppService {
         cartRepository.save(cart);
 
         user.setCart(cart);
+        log.info("New user created successfully");
         return userRepository.save(user);
     }
 

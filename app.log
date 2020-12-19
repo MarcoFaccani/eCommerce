@@ -1,0 +1,40 @@
+2020-12-18 18:19:15.069  INFO 19280 --- [main] com.example.demo.ECommerceApplication    : Starting ECommerceApplication on LAPTOP-5L0DJTKH with PID 19280 (C:\Users\Marco\Desktop\ECommerce\starter_code\target\classes started by Marco in C:\Users\Marco\Desktop\ECommerce\starter_code)
+2020-12-18 18:19:15.072  INFO 19280 --- [main] com.example.demo.ECommerceApplication    : No active profile set, falling back to default profiles: default
+2020-12-18 18:19:15.585  INFO 19280 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data repositories in DEFAULT mode.
+2020-12-18 18:19:15.668  INFO 19280 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 75ms. Found 4 repository interfaces.
+2020-12-18 18:19:16.001  INFO 19280 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$bd712ed9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-18 18:19:16.192  INFO 19280 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8099 (http)
+2020-12-18 18:19:16.208  INFO 19280 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-12-18 18:19:16.208  INFO 19280 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.19]
+2020-12-18 18:19:16.320  INFO 19280 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-12-18 18:19:16.320  INFO 19280 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1214 ms
+2020-12-18 18:19:16.507  INFO 19280 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2020-12-18 18:19:16.574  INFO 19280 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2020-12-18 18:19:16.607  INFO 19280 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2020-12-18 18:19:16.649  INFO 19280 --- [main] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.10.Final}
+2020-12-18 18:19:16.651  INFO 19280 --- [main] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2020-12-18 18:19:16.736  INFO 19280 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2020-12-18 18:19:16.870  INFO 19280 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2020-12-18 18:19:17.381  INFO 19280 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-12-18 18:19:17.754  WARN 19280 --- [main] aWebConfiguration$JpaWebMvcConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-18 18:19:17.807  INFO 19280 --- [main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@afb7b03, org.springframework.security.web.context.SecurityContextPersistenceFilter@7cd3860, org.springframework.security.web.header.HeaderWriterFilter@7b8fcdf2, org.springframework.web.filter.CorsFilter@4fd63c43, org.springframework.security.web.authentication.logout.LogoutFilter@1c4aa701, com.example.demo.security.JWTAuthenticationFilter@7d483ebe, com.example.demo.security.JWTAuthenticationVerificationFilter@cea67b1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@59cde35, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@75c8d8e7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d98364c, org.springframework.security.web.session.SessionManagementFilter@c29b0dc, org.springframework.security.web.access.ExceptionTranslationFilter@5d00b469, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@36cf6377]
+2020-12-18 18:19:17.888  INFO 19280 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-18 18:19:18.011  INFO 19280 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8099 (http) with context path ''
+2020-12-18 18:19:18.014  INFO 19280 --- [main] com.example.demo.ECommerceApplication    : Started ECommerceApplication in 3.206 seconds (JVM running for 3.866)
+2020-12-18 18:19:22.139  INFO 19280 --- [http-nio-8099-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-18 18:19:22.139  INFO 19280 --- [http-nio-8099-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-12-18 18:19:22.144  INFO 19280 --- [http-nio-8099-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2020-12-18 18:19:22.236  INFO 19280 --- [http-nio-8099-exec-3] c.e.demo.controllers.UserController      : New request user creation
+2020-12-18 18:19:22.251  INFO 19280 --- [http-nio-8099-exec-3] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2020-12-18 18:19:22.447  INFO 19280 --- [http-nio-8099-exec-3] c.e.demo.controllers.UserController      : New user created
+2020-12-18 18:19:25.861  INFO 19280 --- [http-nio-8099-exec-4] c.e.demo.controllers.UserController      : New request findByUserName: marco
+2020-12-18 18:19:37.595  INFO 19280 --- [http-nio-8099-exec-7] c.e.demo.controllers.UserController      : New request user creation
+2020-12-18 18:19:37.672  INFO 19280 --- [http-nio-8099-exec-7] c.e.demo.controllers.UserController      : New user created
+2020-12-18 18:19:43.375  INFO 19280 --- [http-nio-8099-exec-8] c.e.demo.controllers.UserController      : New request findByUserName: sandro
+2020-12-18 18:19:59.331  INFO 19280 --- [http-nio-8099-exec-9] c.e.demo.controllers.UserController      : New request findByUserName: x
+2020-12-18 18:20:06.601  INFO 19280 --- [Thread-3] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-18 18:20:06.603  INFO 19280 --- [Thread-3] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-12-18 18:20:06.605  INFO 19280 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2020-12-18 18:20:06.606  INFO 19280 --- [Thread-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
