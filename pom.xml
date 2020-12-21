@@ -7,10 +7,11 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.2.4.RELEASE</version>
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>auth-course</artifactId>
+	<groupId>com.practice</groupId>
+	<artifactId>eCommerce</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>auth-course</name>
+	<packaging>jar</packaging>
+	<name>eCommerce</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

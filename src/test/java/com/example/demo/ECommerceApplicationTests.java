@@ -169,8 +169,8 @@ public class ECommerceApplicationTests {
 		headers.add("Content-Type", "application/json");
 		headers.add("Authorization", jwt);
 
-		ResponseEntity<Item> response =
-				testRestTemplate.exchange(baseUrl + "/api/item/name/{name}", HttpMethod.GET, new HttpEntity<>(headers), Item.class, "Round Widget");
+		ResponseEntity<Item[]> response =
+				testRestTemplate.exchange(baseUrl + "/api/item/name/{name}", HttpMethod.GET, new HttpEntity<>(headers), Item[].class, "Round Widget");
 
 		Assert.assertEquals(HttpStatus.OK, response.getStatusCode());
 	}
